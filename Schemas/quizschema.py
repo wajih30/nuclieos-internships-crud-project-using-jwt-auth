@@ -48,6 +48,29 @@ class ScoreResponse(BaseModel):
         orm_mode=True
 
 
+# Quiz Generation Schemas
+class QuizGenerationRequest(BaseModel):
+    instructions: str  # Natural language instructions from user
+
+
+class QuestionData(BaseModel):
+    QuestionId: int
+    QuizId: int
+    Questions: dict  # The questions JSON data
+    
+    class Config:
+        orm_mode = True
+
+
+class QuizGenerationResponse(BaseModel):
+    quiz: QuizResponse
+    questions: QuestionData
+    question_count: int
+    
+    class Config:
+        orm_mode = True
+
+
 
 
 

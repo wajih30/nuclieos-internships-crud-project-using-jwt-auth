@@ -45,7 +45,7 @@ def get_my_enrollments(student_id: int, db: Session = Depends(get_db)):
 
 
 @student_router.post("/rate", response_model=enrollmentschemas.EnrollmentRatingResponse)
-def rate_course(rate: enrollmentschemas.EnrollmentRating, db: Session = Depends(get_db)):
+def rate_course(rate: enrollmentschemas.EnrollmentRating, current_student: Users = Depends(get_current_active_student), db: Session = Depends(get_db)):
     enroll_service = enrollment_services.EnrollmentsService(db)
     updated = enroll_service.rate_course(rate.StudentId, rate.CourseId,rate.InstructorId, rate.rating) 
     return updated
@@ -61,7 +61,7 @@ def view_course_rating(course_id: int,instructor_id: int,db: Session = Depends(g
 
 
 @student_router.post("/instructor/{instructor_id}/course/{course_id}/quiz/{quiz_id}/student/{student_id}/attempt")
-def attempt_quiz(quiz_attempt: quizschema.QuizScoreBase, course_id:int, quiz_id:int, student_id:int, instructor_id:int, db: Session = Depends(get_db)):
+def attempt_quiz(quiz_attempt: quizschema.QuizScoreBase, course_id:int, quiz_id:int, student_id:int, instructor_id:int, current_student: Users = Depends(get_current_active_student), db: Session = Depends(get_db)):
     quiz_service = quiz_score_service.Quiz(db)
     return quiz_service.attempt_quiz(quiz_id, course_id, instructor_id, student_id, quiz_attempt.QuizScore)
 

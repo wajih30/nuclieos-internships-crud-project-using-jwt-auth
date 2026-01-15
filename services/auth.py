@@ -148,7 +148,7 @@ def get_user_from_refresh_token(
 def get_current_active_teacher(
     current_user: Users = Depends(get_current_user)
 ) -> Users:
-    if current_user.role != "Teacher":
+    if current_user.role != "teacher":
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Not enough permissions"

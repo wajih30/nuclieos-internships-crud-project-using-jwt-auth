@@ -37,7 +37,6 @@ class Lessons():
 
 
         db_lesson.lessonName = lesson.lessonName
-        db_lesson.InstructorName = lesson.InstructorName
         self.db.commit()
         self.db.refresh(db_lesson)
         return db_lesson

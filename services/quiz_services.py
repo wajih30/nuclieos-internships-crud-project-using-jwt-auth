@@ -35,7 +35,7 @@ class Quiz():
         get_instructor=self.db.query(usermodel.Users).filter(usermodel.Users.id==quiz.InstructorId).first()
         if not db_quiz:
            return None
-        if get_instructor.role== "teacher":
+        if get_instructor.role!= "teacher":
             raise ValueError("Only Teachers can update quizzes.")
         
 

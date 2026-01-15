@@ -2,7 +2,7 @@ from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
-from models import categorymodel, lessonsmodel,usermodel,coursesmodel,enrollmentsmodel,quizmodel,quizscores
+from models import categorymodel, lessonsmodel,usermodel,coursesmodel,enrollmentsmodel,quizmodel,quizscores,questionmodel
 
 from alembic import context
 from db.db import base
